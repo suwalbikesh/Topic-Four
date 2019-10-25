@@ -2,6 +2,7 @@ package com.bikeshsuwal.listview;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -51,9 +52,14 @@ public class MainActivity extends AppCompatActivity {
         lstcountries.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String country = parent.getItemAtPosition(position).toString(); // to get clicked country name (to get clicked key)
-                String capital = countriesMap.get(country); // to get capital name of clicked country(to get value of clicked key)
-                Toast.makeText(MainActivity.this, "The Capital City of "+country+" is "+capital, Toast.LENGTH_LONG).show(); // to show the capital
+                String country = parent.getItemAtPosition(position).toString();        // to get clicked country name (to get clicked key)
+                String capital = countriesMap.get(country);         // to get capital name of clicked country(to get value of clicked key)
+//                Toast.makeText(MainActivity.this, "The Capital City of "+country+" is "+capital, Toast.LENGTH_LONG).show();      // to show the capital(to show the value)
+
+                //for running new activity
+                Intent intent = new Intent(MainActivity.this,CapitalActivity.class);
+                intent.putExtra("capital",capital); //passing the value to another activity
+                startActivity(intent);
             }
         });
 
