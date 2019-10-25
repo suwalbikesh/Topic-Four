@@ -3,8 +3,11 @@ package com.bikeshsuwal.listview;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -44,6 +47,15 @@ public class MainActivity extends AppCompatActivity {
         );
 
         lstcountries.setAdapter(arrayAdapter);
+
+        lstcountries.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String country = parent.getItemAtPosition(position).toString(); // to get clicked country name (to get clicked key)
+                String capital = countriesMap.get(country); // to get capital name of clicked country(to get value of clicked key)
+                Toast.makeText(MainActivity.this, "The Capital City of "+country+" is "+capital, Toast.LENGTH_LONG).show(); // to show the capital
+            }
+        });
 
     }
 }
